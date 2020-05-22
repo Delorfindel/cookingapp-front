@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useReducer, FunctionComponent } from 'react';
-import PropTypes from 'prop-types';
+import React, {
+  createContext, useContext, useReducer, FunctionComponent,
+} from 'react';
 
 const UIContext = createContext(null, null);
 

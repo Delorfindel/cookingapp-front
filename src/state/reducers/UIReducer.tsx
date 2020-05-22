@@ -1,4 +1,3 @@
-import { HANDLE_PROGRAMME_MOBILE } from '@constants/index';
 
 export const initialStateUI = {
   error: '',
@@ -13,7 +12,7 @@ export const initialStateUI = {
     submenuOpen: false,
     backToMenu: false,
     submenuIndex: 0,
-  }
+  },
 };
 
 export const UIReducer = (prevState = initialStateUI, action) => {
@@ -25,8 +24,8 @@ export const UIReducer = (prevState = initialStateUI, action) => {
         isMobile: {
           init: true,
           value: payload.isMobile,
-          width: payload.width
-        }
+          width: payload.width,
+        },
       };
     case 'menuToggle':
       return {
@@ -36,7 +35,7 @@ export const UIReducer = (prevState = initialStateUI, action) => {
           submenuOpen: false,
           backToMenu: false,
           submenuIndex: 0,
-        }
+        },
       };
     case 'closeSub':
       return {
@@ -46,7 +45,7 @@ export const UIReducer = (prevState = initialStateUI, action) => {
           submenuOpen: false,
           backToMenu: true,
           submenuIndex: 0,
-        }
+        },
       };
     case 'openSub1':
       return {
@@ -55,7 +54,7 @@ export const UIReducer = (prevState = initialStateUI, action) => {
           ...prevState.menu,
           submenuOpen: true,
           submenuIndex: 1,
-        }
+        },
       };
     case 'openSub2':
       return {
@@ -64,17 +63,7 @@ export const UIReducer = (prevState = initialStateUI, action) => {
           ...prevState.menu,
           submenuOpen: true,
           submenuIndex: 2,
-        }
-      };
-    case HANDLE_PROGRAMME_MOBILE:
-      return {
-        ...prevState,
-        replaceNavbar: payload.replaceNavbar,
-        isMobile: {
-          init: true,
-          value: payload.isMobile,
-          width: payload.width
-        }
+        },
       };
     default:
       return prevState;

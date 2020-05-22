@@ -1,0 +1,30 @@
+{
+    "presets": [
+        "next/babel",
+        "@babel/preset-typescript"
+    ],
+    "plugins": [
+        "inline-react-svg",
+        [
+            "module-resolver",
+            {
+                "root": [
+                    "./src"
+                ],
+                "alias": {
+                    "src": "./src",
+                    "@components": "./src/components",
+                    "@constants": "./src/state/constants",
+                    "@actions": "./src/state/actions",
+                    "@reducers": "./src/state/reducers",
+                    "@contexts": "./src/state/contexts",
+                    "@lib": "./src/lib",
+                    "@icons": "./public/icons",
+                    "@lottie": "./public/lottie",
+                    "@assets": "./assets",
+                    "@public": "./public"
+                }
+            }
+        ]
+    ]
+}
