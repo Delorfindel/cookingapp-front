@@ -1,0 +1,270 @@
+@import "_variables.scss";
+@import "_underline.scss";
+@import "_mixin.scss";
+@import "gradient/_gradient-mixin.scss";
+@import "gradient/_gradient.scss";
+@import "library/select.scss";
+@import "library/map.scss";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $body-font;
+  margin: 0;
+  -moz-osx-font-smoothing: grayscale;
+  color: #484848;
+  @apply text-base;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+  -webkit-appearance: none;
+}
+
+button:focus {
+  outline: 0 !important;
+}
+
+#page-wrap:not(.replaceNavbar) {
+  margin-top: 60px;
+}
+
+.my-bold {
+  font-family: $body-font-bold;
+}
+
+.black {
+  color: #444444 !important;
+}
+
+.grey {
+  color: $grey;
+}
+
+.grey5 {
+  color: $grey5;
+}
+
+.primary {
+  color: $primary !important;
+}
+
+.variant {
+  color: $variant !important;
+}
+
+.title1 {
+  font-size: 20px;
+  color: $grey2;
+  line-height: 23px;
+  font-weight: 700;
+
+  @include sm {
+    font-size: 25px;
+    color: $grey2;
+    line-height: 30px;
+    font-weight: 600;
+  }
+}
+
+.footer .title1 {
+  color: white;
+}
+
+.title2 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 38px;
+  line-height: 45px;
+  font-weight: 900;
+
+  @include sm {
+    color: $grey2;
+    font-size: 55px;
+    line-height: 50px;
+    font-weight: 900;
+    margin-bottom: 32px;
+  }
+}
+
+.title3 {
+  font-size: 33px;
+
+  margin-top: 0;
+  margin-bottom: 32px;
+  color: $grey2;
+  @include sm {
+    font-size: 42px;
+  }
+  line-height: 50px;
+  text-align: center;
+  font-weight: 900;
+}
+
+.cta {
+  @include linear-gradient(left, $deep-blue);
+  color: white !important;
+  border-radius: $cta-radius;
+  padding: 15px 25px;
+  //margin: 0 !important;
+  cursor: pointer !important;
+  border: none;
+  transition: 0.3s;
+  @apply text-lg;
+}
+
+.cta-small {
+  @include linear-gradient(left, $deep-blue);
+  color: white !important;
+  border-radius: $cta-radius;
+  padding: 5px 5px;
+  //margin: 0 !important;
+  cursor: pointer !important;
+  border: none;
+  transition: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: block;
+}
+
+.cta-variant {
+  @include linear-gradient(left, $deep-violet);
+  color: white !important;
+  border-radius: $cta-radius;
+  padding: 15px 25px;
+  //margin: 0 !important;
+  cursor: pointer !important;
+  border: none;
+  transition: 0.5s;
+  @apply text-lg;
+  &:hover {
+    @include linear-gradient(left, $deep-violet-hover);
+    transition: 0.5s;
+  }
+}
+
+.emoji {
+  font-size: 28px;
+  display: inline-block;
+  line-height: 16px;
+}
+
+.emoji .emojione {
+  height: 28px;
+  width: auto !important;
+  margin-top: 1px;
+}
+
+.cta-ghost {
+  background: white;
+  color: $primary !important;
+  border: solid 2px $primary;
+  border-radius: $cta-radius;
+  padding: 15px 25px;
+  //margin: 0 !important;
+  cursor: pointer !important;
+  transition: 0.5s;
+  @apply text-lg;
+
+  &:hover {
+    @include linear-gradient(left, $deep-blue);
+    color: white !important;
+    transition: 0.5s;
+  }
+}
+
+.mapboxgl-ctrl-logo {
+  display: none !important;
+}
+
+.mapboxgl-ctrl-bottom-right {
+  display: none !important;
+}
+
+.bg-mygrey {
+  background: $bg-gray;
+}
+
+.bg-variant {
+  @include linear-gradient(left, $deep-violet);
+}
+
+.bg-gradient-primary {
+  @include linear-gradient(left, $deep-blue);
+}
+
+.bg-gradient-primary-top {
+  @include linear-gradient(top, $deep-blue);
+}
+
+.hover-bg-gradient-primary:hover {
+  @include linear-gradient(left, $deep-blue);
+}
+
+.__react_component_tooltip.type-light {
+  @apply shadow-lg;
+}
+
+.__react_component_tooltip.sthow {
+  opacity: 1;
+  margin: 5px;
+}
+
+.boxed {
+  margin: auto;
+  width: 90vw;
+  @include sm {
+    width: 90vw;
+    max-width: $screen-xl-min;
+  }
+}
+
+.separator-text {
+  width: 7%;
+  height: 3px;
+  @include linear-gradient(left, $deep-blue);
+  margin: 10px 0;
+}
+
+.primary-shadow {
+  box-shadow: $primary-shadow;
+  transition: 0.3s;
+}
+
+.hover-primary-shadow:hover {
+  box-shadow: $primary-shadow;
+  transition: 0.3s;
+}
+
+.cta-variant:disabled {
+  opacity: 0.2 !important;
+}
+
+.image-gallery-fullscreen-button:hover::before,
+.image-gallery-play-button:hover::before,
+.image-gallery-left-nav:hover::before,
+.image-gallery-right-nav:hover::before {
+  color: $variant;
+}
+
+.border-primary {
+  border-color: $primary !important;
+}
+
+.border-variant {
+  border-color: $variant !important;
+}

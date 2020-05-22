@@ -1,0 +1,71 @@
+@import "styles/_variables.scss";
+@import "styles/_mixin.scss";
+
+.intro-select {
+  width: 100%;
+  margin-right: 0px;
+  transition: 0.3s;
+  font-family: $body-font !important;
+  @include sm {
+    margin-right: 0px;
+  }
+}
+
+.prefix-select-typeForm__placeholder {
+  font-family: $body-font !important;
+  font-weight: 500 !important;
+  font-size: 18px!important;
+}
+
+.prefix-select-typeForm__single-value {
+  font-family: $body-font !important;
+  font-weight: 500 !important;
+  font-size: 18px!important;
+}
+  
+.intro-prefix-select__indicators {
+  height: 50px;
+}
+
+.intro-prefix-select__indicator .MuiSvgIcon-root {
+  color: $primary;
+}
+
+.index-revenus .intro-prefix-select__single-value::before {
+  content: "Revenus : ";
+}
+
+.index-charges .intro-prefix-select__single-value::before {
+  content: "Charges : ";
+}
+
+.intro-prefix-select__placeholder {
+  font-family: $body-font !important;
+  font-weight: 700 !important;
+  font-size: 18px!important;
+}
+
+.intro-prefix-select__single-value {
+  font-family: $body-font !important;
+  font-weight: 700 !important;
+  font-size: 18px!important;
+}
+
+.intro-prefix-select__control {
+  //height: 50px;
+  border-color: $primary !important;
+  border-radius: 100px !important;
+  border-width: 2px !important;
+  padding: 0 5px!important;
+  box-sizing: content-box!important;
+  background: transparent!important;
+  @apply shadow-lg;
+}
+
+.intro-prefix-select__indicator svg {
+  color: $primary!important;
+}
+
+.intro-prefix-select__indicator-separator {
+  background: $primary!important;
+}

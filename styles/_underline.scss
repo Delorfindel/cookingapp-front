@@ -1,0 +1,80 @@
+@import "_variables.scss";
+@import "_mixin.scss";
+@import "gradient/_gradient-mixin.scss";
+@import "gradient/_gradient.scss";
+
+.pinel-underline::after, .variant-underline::after  {
+  content: "";
+  width: 100%;
+  height: 3px;
+  //@apply bg-orange-400;
+  //background: $bg-variant;
+  @include linear-gradient(left, $deep-violet);
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+}
+
+.white-underline::after {
+  content: "";
+  width: 100%;
+  height: 2px;
+  //@apply bg-orange-400;
+  background: white;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+}
+
+.primary-underline::after {
+  content: "";
+  width: 100%;
+  height: 2px;
+  //@apply bg-orange-400;
+  //background: $bg-primary;
+  @include linear-gradient(left, $deep-blue);
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+}
+
+.sort-header .primary-underline::after {
+  bottom: -2px!important;
+  background: $primary!important;
+  width: 80%;
+  left: 10%;
+}
+
+*:hover > .pinel-underline-hover::after, *:hover > .variant-underline-hover::after  {
+  content: "";
+  width: 100%;
+  height: 3px;
+  //@apply bg-orange-400;
+  //background: $bg-variant;
+  @include linear-gradient(left, $deep-blue);
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+}
+
+*:hover > .white-underline-hover::after {
+  content: "";
+  width: 100%;
+  height: 3px;
+  //@apply bg-orange-400;
+  background: white;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+}
+
+*:hover > .primary-underline-hover::after {
+  content: "";
+  width: 100%;
+  height: 3px;
+  //@apply bg-orange-400;
+  background: $bg-primary;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+}

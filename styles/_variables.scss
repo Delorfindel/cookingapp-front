@@ -1,0 +1,46 @@
+@import "gradient/gradient";
+
+$primary: #fe7753;
+$variant: #690c4a;
+
+$grey: #666666;
+$grey2: #656a72;
+$grey5: #9aa8be;
+
+$bg-primary: $primary;
+$bg-grayed-primary: linear-gradient(left, $deep-blue);
+$bg-primary-top: linear-gradient(top, $deep-blue);
+$bg-secondary: $variant;
+$bg-index-secondary: #f8faff;
+$bg-gray: #fafafc;
+$bg-variant: linear-gradient(left, $deep-violet);
+$bg-variant-hover: linear-gradient(left, $deep-violet-hover);
+
+$normal-shadow: 0px 3px 6px rgba(0, 0, 0, 0.161);
+$card-shadow: 0px 3px 10px rgba(0, 0, 0, 0.161);
+$primary-shadow: 0px 8px 6px rgba(0, 148, 222, 0.3);
+$card-radius: 15px;
+$cta-radius: 6px;
+
+$font-size-big: 16px;
+$font-size-normal: 15px;
+$font-size-small: 11px;
+$font-weight-big: 500;
+$font-weight-normal: 500;
+$font-weight-small: 500;
+
+$header-font: "Roboto", sans-serif;
+$body-font: "Roboto", sans-serif;
+$body-font-bold: "Roboto", sans-serif;
+
+$screen-sm-min: 601px;
+$screen-md-min: 768px;
+$screen-lg-min: 1024px;
+$screen-lgg-min: 1200px;
+$screen-xl-min: 1400px;
+$screen-xxl-min: 1980px;
+
+$mainHeaderHeight: 60px;
+$programmeHeaderHeight: 50px;
+$programmeWrapperHeight: calc(100vh - #{$programmeHeaderHeight} - #{$mainHeaderHeight});
+$programmeWrapperHeightWithoutFilter: calc(100vh - #{$mainHeaderHeight});
