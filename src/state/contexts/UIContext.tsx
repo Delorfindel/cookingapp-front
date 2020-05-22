@@ -2,6 +2,8 @@ import React, {
   createContext, useContext, useReducer, FunctionComponent,
 } from 'react';
 
+import PropTypes from 'prop-types';
+
 const UIContext = createContext(null, null);
 
 export const UIProvider = ({ reducer, initialState, children }) => (
