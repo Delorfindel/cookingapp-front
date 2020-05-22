@@ -1,13 +1,13 @@
-import { gql, ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
+import {
+  gql, ApolloClient, HttpLink, InMemoryCache,
+} from '@apollo/client';
 import fetch from 'isomorphic-unfetch';
 
 
-export const getApolloClient = () => {
-    return new ApolloClient({
-        cache: new InMemoryCache(),
-        link: new HttpLink({
-            uri: 'https://cyberpatrimoine-backend.herokuapp.com/graphql',
-            fetch,
-        }),
-    });
-};
+export const getApolloClient = () => new ApolloClient({
+  cache: new InMemoryCache(),
+  link: new HttpLink({
+    uri: 'https://cookingapp-back.herokuapp.com/graphql',
+    fetch,
+  }),
+});
