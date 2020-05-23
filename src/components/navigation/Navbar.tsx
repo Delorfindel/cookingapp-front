@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactComponent as MenuIcon } from '@public/svg/MenuIcon.svg';
+import { ReactComponent as MenuIcon } from '@public/svg/menuIcon.svg';
 import styles from './Navbar.module.scss';
 
 const Navbar = () => (
