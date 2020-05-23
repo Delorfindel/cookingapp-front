@@ -5,9 +5,9 @@ import styles from './Navbar.module.scss';
 const Navbar = () => (
   <div className={styles.wrapper}>
     <div className="cursor-pointer">
-        <p className="text-lg font-semibold primary">
-            Les Raycettes++
-        </p>
+      <p className="text-lg font-semibold primary">
+        Les Raycettes++
+      </p>
     </div>
     <div className="cursor-pointer">
       <MenuIcon />
