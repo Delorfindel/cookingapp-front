@@ -1,0 +1,26 @@
+@import "styles/_variables.scss";
+@import "styles/_mixin.scss";
+
+.searchWrapper {
+    background-color: $bg-gray;
+    @apply flex;
+    @apply flex-row;
+    @apply items-center;
+    @apply justify-start;
+    @apply w-full;
+    @apply px-5;
+    @apply py-4;
+    @apply mb-5;
+    @apply text-lg;
+    @apply rounded-full;
+}
+
+.searchInput {
+    color: $variant;
+    @apply text-lg;
+    @apply leading-none;
+    @apply bg-transparent;
+    ::placeholder {
+        color: $variant;
+    }
+}

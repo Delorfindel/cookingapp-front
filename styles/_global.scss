@@ -116,15 +116,17 @@ button:focus {
 }
 
 .cta {
-  @include linear-gradient(left, $deep-blue);
+  background: $primary;
   color: white !important;
-  border-radius: $cta-radius;
-  padding: 15px 25px;
+
   //margin: 0 !important;
   cursor: pointer !important;
   border: none;
   transition: 0.3s;
+  @apply py-4;
+  @apply px-5;
   @apply text-lg;
+  @apply rounded-full;
 }
 
 .cta-small {

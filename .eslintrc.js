@@ -16,7 +16,7 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 2018,
+    ecmaVersion: 11,
     sourceType: 'module',
   },
   plugins: [
@@ -27,7 +27,8 @@ module.exports = {
     'react/jsx-filename-extension' : 0,
     'react/jsx-props-no-spreading' : 0,
     'import/no-unresolved' : 0,
-    'react/jsx-indent' : 0,
     'react/forbid-prop-types' : 0
   },
 };
+
+

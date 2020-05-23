@@ -1,0 +1,18 @@
+@import "styles/_variables.scss";
+@import "styles/_mixin.scss";
+@import "styles/gradient/_gradient-mixin.scss";
+@import "styles/gradient/_gradient.scss";
+
+.wrapper {
+    @apply flex;
+    @apply flex-row;
+    @apply items-center;
+    @apply justify-between;
+    @apply w-full;
+    @apply p-4;
+    @apply bg-white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 300;
+}
