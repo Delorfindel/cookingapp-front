@@ -18,6 +18,7 @@
                     "@actions": "./src/state/actions",
                     "@reducers": "./src/state/reducers",
                     "@contexts": "./src/state/contexts",
+                    "@services": "./src/services",
                     "@lib": "./src/lib",
                     "@icons": "./public/icons",
                     "@lottie": "./public/lottie",
