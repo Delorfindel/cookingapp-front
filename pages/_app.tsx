@@ -5,6 +5,8 @@ import { ApolloProvider, ApolloClient } from '@apollo/client';
 import withApollo from '@lib/withApollo';
 import { initialStateUI, UIReducer } from '@reducers/UIReducer';
 import { UIProvider } from '@contexts/UIContext';
+import { AuthProvider } from '@contexts/AuthContext'
+import { initialStateAuth, AuthReducer } from '@reducers/AuthReducer'
 import 'styles/tailwind.css';
 import 'styles/_global.scss';
 import Navbar from '@components/navigation/Navbar';
@@ -33,12 +35,14 @@ class MyApp extends App<IProps> {
         </Head>
         <ApolloProvider client={apollo}>
           <UIProvider initialState={initialStateUI} reducer={UIReducer}>
-            <div id="panel">
-              <Navbar />
-              <div id="page-wrap">
-                <Component {...pageProps} />
+            <AuthProvider initialState={initialStateAuth} reducer={AuthReducer}>
+              <div id="panel">
+                <Navbar />
+                <div id="page-wrap">
+                  <Component {...pageProps} />
+                </div>
               </div>
-            </div>
+            </AuthProvider>
           </UIProvider>
         </ApolloProvider>
       </>
