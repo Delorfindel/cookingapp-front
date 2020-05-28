@@ -1,5 +1,5 @@
 import React from 'react';
-import HeaderWrapper from "@components/user/HeaderWrapper"
+import HeaderWrapper from "@components/user/HeaderWrapper";
 
 const User = ({ user }) => (  
   <>

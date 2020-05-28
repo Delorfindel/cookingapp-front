@@ -3,7 +3,6 @@ import _ from 'lodash';
 import { useQuery } from '@apollo/client';
 import { useAuthContext } from '@contexts/AuthContext'
 import AuthService from '@services/auth'
-import Router from 'next/router'
 
 export default function LoginForm() {
   const [email, setEmail] = useState("anthony@test.com");

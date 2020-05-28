@@ -46,7 +46,7 @@ export default function Home({ recipes }) {
 }
 
 export async function getServerSideProps() {
-  const ApolloClient = getApolloClient();
+  const ApolloClient = getApolloClient(null);
   const { data } = await ApolloClient.query({
     query: GETRECIPES_QUERY,
   });

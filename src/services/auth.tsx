@@ -1,6 +1,6 @@
-import Axios from 'axios'
-import Cookies from 'universal-cookie'
-import Router from 'next/router'
+import Axios from 'axios';
+import Cookies from 'universal-cookie';
+import Router from 'next/router';
 
 const storageTokenKey = 'authToken';
 const storageProfileKey = 'authProfile';
