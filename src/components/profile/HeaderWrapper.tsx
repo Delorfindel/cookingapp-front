@@ -20,7 +20,7 @@ const HeaderWrapper = (user) => (
           <p className="text-md grey">{user.email}</p>
         </div>
       </div>
-      <div className="flex flex-row h-16 bg-grey">
+      <div className="flex flex-row bg-grey">
         <div className="flex-1">
           Mes recettes
         </div>
