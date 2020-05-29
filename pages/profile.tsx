@@ -51,7 +51,7 @@ export function getServerSideProps(ctx) {
 
     const ApolloClient = getApolloClient(token);
     const { data } = await ApolloClient.query({
-      query: GETUSERRECIPES_QUERY(user?.username),
+      query: GETUSERRECIPES_QUERY(user?.username || ''),
     });
     return { props: { user, recipes: data.recipes } };
   }).catch((err) => {
