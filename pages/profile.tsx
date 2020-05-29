@@ -36,8 +36,8 @@ const GETUSERRECIPES_QUERY = (username) => gql`
 export default function Profile({ user, recipes }) {
   return (
     <>
-      {HeaderWrapper(user)}
-      {RecipesList(recipes)}
+      <HeaderWrapper user={user} />
+      <RecipesList recipes={recipes} />
     </>
   );
 }
@@ -46,7 +46,7 @@ export function getServerSideProps(ctx) {
   const auth = new AuthService();
   const token = auth.getTokenSSR(ctx);
 
-  return auth.me(token).then(async (user) => {
+  return auth.me(token).then(async (user:any) => {
 	  console.log('user', user);
 
     const ApolloClient = getApolloClient(token);
@@ -57,6 +57,5 @@ export function getServerSideProps(ctx) {
   }).catch((err) => {
     ctx.res.writeHeader(307, { Location: '/login' });
     ctx.res.end();
-    new Error(err.message);
   });
 }

@@ -11,16 +11,15 @@ import styles from './RecipesList.module.scss';
 const CardWrapper = (e) => (
   <Link href="/recipe/[id]" as={`/recipe/${e.id}`}>
     <div
-      className="flex-1 ml-4 mb-4 bg-white shadow-lg rounded-xl"
-      style={{ flexBasis: '30%', minWidth: 'auto', maxWidth: 'auto' }}
+      className="col-span-1 bg-white shadow-lg rounded-xl"
     >
       <img
         alt="recipes banner"
-        className="object-cover h-auto w-auto"
+        className="object-cover w-auto h-auto"
         src={e.banner.url}
         style={{ borderTopLeftRadius: '1rem', borderTopRightRadius: '1rem' }}
       />
-      <div className="p-2 justify-center items-center">
+      <div className="items-center justify-center p-2">
         <p className="text-sm capitalize variant font-variant">
           {e.name}
         </p>
@@ -32,7 +31,7 @@ const CardWrapper = (e) => (
         />
         <div className="relative">
           <div
-            className="absolute bg-white p-2 rounded-full shadow-lg"
+            className="absolute p-2 bg-white rounded-full shadow-lg"
             style={{ top: '-32px', right: '0px' }}
             onClick={() => {
               console.log('here');
@@ -50,9 +49,9 @@ const CardWrapper = (e) => (
   </Link>
 );
 
-export default function RecipesList(recipes) {
+export default function RecipesList({ recipes }) {
   return (
-    <div className="flex flex-wrap pb-4 pr-4">
+    <div className="grid grid-cols-2 gap-5 px-4 lg:grid-cols-3 xl:grid-cols-5">
       {
         _.map(recipes, (e) => CardWrapper(e))
       }
