@@ -1,31 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
 import { useQuery } from '@apollo/client';
-import { useAuthContext } from '@contexts/AuthContext'
-import AuthService from '@services/auth'
+import { useAuthContext } from '@contexts/AuthContext';
+import AuthService from '@services/auth';
 
 export default function LoginForm() {
-  const [email, setEmail] = useState("anthony@test.com");
-  const [password, setPassword] = useState("1234567");
+  const [email, setEmail] = useState('anthony@test.com');
+  const [password, setPassword] = useState('1234567');
   const [error, setError] = useState(false);
   const [AuthState, dispatch] = useAuthContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setError(false);
-    const auth = new AuthService;
-    auth.login(email, password).then(({jwt, user}) => {
+    const auth = new AuthService();
+    auth.login(email, password).then(({ jwt, user }) => {
       dispatch({
         type: 'addUser',
-        payload: { user }
+        payload: { user },
       });
-    }).catch(err => setError(true));
-  }
+    }).catch((err) => setError(true));
+  };
 
   useEffect(() => {
-    if (error)
-      setError(false);
-  }, [password])
+    if (error) setError(false);
+  }, [password]);
 
   return (
     <>
@@ -38,8 +37,11 @@ export default function LoginForm() {
               </label>
             </div>
             <div className="">
-              <input className="bg-white shadow-lg appearance-none rounded-xl w-full py-2 px-4 text-gray-700"
-                value={email} onChange={e => setEmail(e.target.value)} required
+              <input
+                className="bg-white shadow-lg appearance-none rounded-xl w-full py-2 px-4 text-gray-700"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
           </div>
@@ -50,17 +52,23 @@ export default function LoginForm() {
               </label>
             </div>
             <div className="">
-              <input className={`bg-white shadow-lg appearance-none border-2 rounded-xl w-full py-2 px-4 text-gray-700 leading-tight ${error && 'border-red-400'}`}
-                id="password" type="password" value={password} onChange={e => setPassword(e.target.value)} required
+              <input
+                className={`bg-white shadow-lg appearance-none border-2 rounded-xl w-full py-2 px-4 text-gray-700 leading-tight ${error && 'border-red-400'}`}
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
               />
             </div>
-            {error &&
-              <div className={`flex flex-1 mt-2`}>
+            {error
+              && (
+              <div className="flex flex-1 mt-2">
                 <a className="text-sm  text-red-500" href="#">
                   Mot de passe ou email incorrect.
                 </a>
               </div>
-            }
+              )}
           </div>
           <div className="flex justify-end flex-1 mb-5 pb-5 border-b border-gray-400">
             <a className="text-sm  primary" href="#">

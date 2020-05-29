@@ -16,7 +16,7 @@ const HeaderWrapper = (user) => (
           />
         </div>
         <div className="flex-1 ml-2">
-          <p className="capitalize primary" style={{ 'fontSize': '26px' }}>
+          <p className="capitalize primary" style={{ fontSize: '26px' }}>
             {user.username}
           </p>
           <button type="button" className="flex flex-row items-center justify-center border border-current w-full px-3 py-1 ">
@@ -24,9 +24,9 @@ const HeaderWrapper = (user) => (
           </button>
         </div>
       </div>
-        <div className="border-b border-gray-400 pb-5">
+      <div className="border-b border-gray-400 pb-5">
         <p className="text-sm">{user.description}</p>
-        </div>
+      </div>
     </div>
   </>
 );

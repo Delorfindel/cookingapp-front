@@ -5,13 +5,15 @@ import { ReactComponent as UserIcon } from '@public/svg/userIcon.svg';
 import { ReactComponent as SavedIcon } from '@public/svg/savedIcon.svg';
 import Link from 'next/link';
 import StarRatings from 'react-star-ratings';
-import { useAuthContext } from '@contexts/AuthContext'
+import { useAuthContext } from '@contexts/AuthContext';
 import styles from './RecipesList.module.scss';
 
-const CardWrapper= (e) => (
+const CardWrapper = (e) => (
   <Link href="/recipe/[id]" as={`/recipe/${e.id}`}>
-    <div className="flex-1 ml-4 mb-4 bg-white shadow-lg rounded-xl"
-      style={{ flexBasis: '30%', minWidth: 'auto', maxWidth: 'auto' }}>
+    <div
+      className="flex-1 ml-4 mb-4 bg-white shadow-lg rounded-xl"
+      style={{ flexBasis: '30%', minWidth: 'auto', maxWidth: 'auto' }}
+    >
       <img
         alt="recipes banner"
         className="object-cover h-auto w-auto"
@@ -31,8 +33,11 @@ const CardWrapper= (e) => (
         <div className="relative">
           <div
             className="absolute bg-white p-2 rounded-full shadow-lg"
-            style={{ top: '-32px', right:'0px'}} onClick={()=>{console.log('here');
-            }}>
+            style={{ top: '-32px', right: '0px' }}
+            onClick={() => {
+              console.log('here');
+            }}
+          >
             <SavedIcon
               width="15"
               height="15"

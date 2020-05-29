@@ -4,45 +4,44 @@ import Router from 'next/router';
 
 const storageTokenKey = 'authToken';
 const storageProfileKey = 'authProfile';
-const url = 'https://cookingapp-back.herokuapp.com'
+const url = 'https://cookingapp-back.herokuapp.com';
 
 export default class AuthService {
-	cookie = null;
-	//don't forget to handle roles if necessary by decoding jwt
-	constructor() {
-		this.cookie = new Cookies();
-	}
+cookie = null;
 
-	saveToken = t => this.cookie.set(storageTokenKey, t, { path: "/" });
+//don't forget to handle roles if necessary by decoding jwt
+constructor() {
+  this.cookie = new Cookies();
+}
 
-	logout = () => {
-		this.cookie.remove(storageTokenKey);
-		Router.push('/');
-	}
+  saveToken = (t) => this.cookie.set(storageTokenKey, t, { path: '/' });
 
-	login = (identifier, password) => new Promise((resolve, reject) => {
-		Axios.post(`${url}/auth/local`, {
-			identifier,
-			password
-		}).then(res => res.data).then(data => {
-			this.saveToken(data.jwt);
-			Router.push('/profile');
-			return resolve(data);
-		}).catch(err => reject({ message: 'Invalid email or password.' }));
-	});
+  logout = () => {
+    this.cookie.remove(storageTokenKey);
+    Router.push('/');
+  }
 
-	me = t => new Promise((resolve, reject) => {
-		Axios.get(`${url}/users/me`, {
-			headers: {'Authorization': `Bearer ${t}`}
-		}).then(res => res.data).then(data => {
-			return resolve(data);
-		}).catch(err => reject(err))
-	});
+  login = (identifier, password) => new Promise((resolve, reject) => {
+    Axios.post(`${url}/auth/local`, {
+      identifier,
+      password,
+    }).then((res) => res.data).then((data) => {
+      this.saveToken(data.jwt);
+      Router.push('/profile');
+      return resolve(data);
+    }).catch((err) => reject({ message: 'Invalid email or password.' }));
+  });
 
-	getTokenSSR(ctx) {
-		const cookies = new Cookies(ctx.req ? ctx.req.headers.cookie : null)
-		const token = cookies.get(storageTokenKey)
+  me = (t) => new Promise((resolve, reject) => {
+    Axios.get(`${url}/users/me`, {
+      headers: { Authorization: `Bearer ${t}` },
+    }).then((res) => res.data).then((data) => resolve(data)).catch((err) => reject(err));
+  });
 
-		return token;
-	}
+  getTokenSSR(ctx) {
+    const cookies = new Cookies(ctx.req ? ctx.req.headers.cookie : null);
+    const token = cookies.get(storageTokenKey);
+
+    return token;
+  }
 }

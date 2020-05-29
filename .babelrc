@@ -24,7 +24,11 @@
                     "@lottie": "./public/lottie",
                     "@assets": "./assets",
                     "@public": "./public"
-                }
+                },
+                "extensions": [
+                    ".js",
+                    ".tsx"
+                ]
             }
         ]
     ]

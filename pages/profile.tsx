@@ -2,16 +2,16 @@ import React from 'react';
 import HeaderWrapper from '@components/profile/HeaderWrapper';
 import { gql } from '@apollo/client';
 import { getApolloClient } from '@lib/getApolloClient';
-import RecipesList from '@components/profile/RecipesList'
+import RecipesList from '@components/profile/RecipesList';
 import AuthService from '@services/auth';
 
 const GETUSERRECIPES_QUERY = (username) => gql`
     query {
       recipes (where: {
-				user: {
-					username:"${username}"
-				}
-			}) {
+		user: {
+			username:"${username}"
+		}
+		}) {
         id,
         user {
           id, 
@@ -34,27 +34,27 @@ const GETUSERRECIPES_QUERY = (username) => gql`
 `;
 
 export default function Profile({ user, recipes }) {
-	return (
-		<>
-			{HeaderWrapper(user)}
-			{RecipesList(recipes)}
-		</>
-	);
-};
+  return (
+    <>
+      {HeaderWrapper(user)}
+      {RecipesList(recipes)}
+    </>
+  );
+}
 
 export function getServerSideProps(ctx) {
-	const auth = new AuthService;
-	const token = auth.getTokenSSR(ctx);
+  const auth = new AuthService();
+  const token = auth.getTokenSSR(ctx);
 
-	return auth.me(token).then(async user => {
-		const ApolloClient = getApolloClient(token);
-		const { data } = await ApolloClient.query({
-			query: GETUSERRECIPES_QUERY(user.username),
-		});
-		return { props: { user, recipes: data.recipes } }
-	}).catch(err => {
-		ctx.res.writeHeader(307, { Location: '/login' })
-		ctx.res.end();
-		new Error(err.message);
-	});
-}; 
+  return auth.me(token).then(async (user) => {
+    const ApolloClient = getApolloClient(token);
+    const { data } = await ApolloClient.query({
+      query: GETUSERRECIPES_QUERY(user.username),
+    });
+    return { props: { user, recipes: data.recipes } };
+  }).catch((err) => {
+    ctx.res.writeHeader(307, { Location: '/login' });
+    ctx.res.end();
+    new Error(err.message);
+  });
+}

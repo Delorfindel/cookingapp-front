@@ -4,6 +4,9 @@
     "target": "es5",
     "baseUrl": ".",
     "paths": {
+      "src/*": [
+        "./src/*"
+      ],
       "@components/*": [
         "./src/components/*"
       ],
@@ -19,26 +22,23 @@
       "@contexts/*": [
         "./src/state/contexts/*"
       ],
-      "@main/*": [
-        "./src/_main/*"
+      "@services/*": [
+        "./src/services/*"
       ],
       "@lib/*": [
         "./src/lib/*"
       ],
+      "@icons/*": [
+        "./public/icons/*"
+      ],
+      "@lottie/*": [
+        "./public/lottie/*"
+      ],
       "@assets/*": [
         "./assets/*"
       ],
-      "@utils/*": [
-        "./src/utils/*"
-      ],
-      "@filters/*": [
-        "./src/utils/filters/*"
-      ],
-      "@initFilters/*": [
-        "./src/utils/filters/initFilters/*"
-      ],
-      "@typeFilters/*": [
-        "./src/utils/filters/types/*"
+      "@public/*": [
+        "./public"
       ]
     },
     "lib": [
