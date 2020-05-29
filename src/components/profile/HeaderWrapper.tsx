@@ -6,25 +6,27 @@ import { ReactComponent as UserIcon } from '@public/svg/userIcon.svg';
 
 const HeaderWrapper = (user) => (
   <>
-    <div className="container p-5 mx-auto">
-      <div className="flex flex-row justify-start items-start pb-6 mb-6 border-b border-gray-400">
-        <div className="flex-0 mr-2">
+    <div className="container p-4 mx-auto">
+      <div className="flex flex-row justify-start items-start pb-6">
+        <div className="flex-0 mr-3">
           <img
             alt="avatar"
             className="shadow-xl h-20 w-20 rounded-full"
             src={user.avatar.url}
           />
         </div>
-        <div className="flex-2 ml-2">
-          <p className="text-xl capitalize primary">{user.username}</p>
-          <p className="text-md grey">{user.email}</p>
+        <div className="flex-1 ml-2">
+          <p className="capitalize primary" style={{ 'fontSize': '26px' }}>
+            {user.username}
+          </p>
+          <button type="button" className="flex flex-row items-center justify-center border border-current w-full px-3 py-1 ">
+            <p>Éditer le profile</p>
+          </button>
         </div>
       </div>
-      <div className="flex flex-row bg-grey">
-        <div className="flex-1">
-          Mes recettes
+        <div className="border-b border-gray-400 pb-5">
+        <p className="text-sm">{user.description}</p>
         </div>
-      </div>
     </div>
   </>
 );

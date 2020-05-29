@@ -48,12 +48,13 @@ export function getServerSideProps(ctx) {
 
 	return auth.me(token).then(async user => {
 		const ApolloClient = getApolloClient(token);
-		const { data }  = await ApolloClient.query({
+		const { data } = await ApolloClient.query({
 			query: GETUSERRECIPES_QUERY(user.username),
 		});
 		return { props: { user, recipes: data.recipes } }
 	}).catch(err => {
-			ctx.res.writeHeader(307, { Location: '/login' })
-			ctx.res.end();
-		});
+		ctx.res.writeHeader(307, { Location: '/login' })
+		ctx.res.end();
+		new Error(err.message);
+	});
 }; 
