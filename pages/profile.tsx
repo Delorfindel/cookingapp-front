@@ -49,7 +49,8 @@ export function getServerSideProps(ctx) {
   return auth.me(token).then(async (user:any) => {
 	  console.log('user', user);
 
-    const ApolloClient = getApolloClient(token);
+
+    const ApolloClient = getApolloClient(ctx, token);
     const { data } = await ApolloClient.query({
       query: GETUSERRECIPES_QUERY(user?.username || ''),
     });

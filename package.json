@@ -8,7 +8,8 @@
     "start": "next start -p $PORT"
   },
   "dependencies": {
-    "@apollo/client": "^3.0.0-beta.44",
+    "@apollo/client": "^3.0.0-beta.49",
+    "@apollo/link-error": "^2.0.0-beta.3",
     "@crello/react-lottie": "^0.0.9",
     "@material-ui/core": "^4.9.13",
     "@material-ui/icons": "^4.9.1",
