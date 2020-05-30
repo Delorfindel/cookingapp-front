@@ -6,7 +6,7 @@ import { ReactComponent as UserIcon } from '@public/svg/userIcon.svg';
 
 const HeaderWrapper = ({ user }) => (
   <>
-    <div className="container p-4 mx-auto">
+    <div className="p-4 bg-white border-b border-gray-200">
       <div className="flex flex-row items-start justify-start pb-6">
         <div className="mr-3 flex-0">
           <img
@@ -24,9 +24,7 @@ const HeaderWrapper = ({ user }) => (
           </button>
         </div>
       </div>
-      <div className="pb-5 border-b border-gray-400">
-        <p className="text-sm">{user.description}</p>
-      </div>
+      <p className="text-sm ">{user.description}</p>
     </div>
   </>
 );

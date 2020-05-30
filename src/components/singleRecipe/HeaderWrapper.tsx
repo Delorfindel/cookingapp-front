@@ -22,7 +22,7 @@ const HeaderWrapper = (e) => (
         onClick={() => Router.back()}
       >
         <div
-          style={{ boxShadow: '1px 15px 13px 64px #0606068c', height: '1px', width: '100%' }}
+          style={{ boxShadow: '1px 15px 100px 64px #0606068c', height: '1px', width: '100%' }}
           className="absolute top-0 z-10"
         />
         <BackIcon
@@ -35,7 +35,7 @@ const HeaderWrapper = (e) => (
         </p>
       </button>
       <div
-        style={{ boxShadow: '1px -15px 13px 64px #0606068c', height: '1px', width: '100%' }}
+        style={{ boxShadow: '1px -15px 100px 64px #0606068c', height: '1px', width: '100%' }}
         className="absolute bottom-0 z-10"
       />
     </div>

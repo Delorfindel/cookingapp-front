@@ -2,5 +2,48 @@
 @import "styles/_mixin.scss";
 
 .wrapper {
-    
+}
+
+.tabsSelectorWrapper {
+    @apply w-full;
+}
+
+.MESRECETTES {
+    height: 4px !important;
+    width: 50%;
+    background-color: $primary;
+    @apply transition-all;
+    @apply duration-500;
+    @apply rounded-full;
+    @apply absolute;
+    top: -4px;
+    left: calc(0%);
+}
+
+.MESLIKES {
+    height: 4px;
+    width: 50%;
+    background-color: $primary;
+    @apply transition-all;
+    @apply duration-500;
+    @apply rounded-full;
+    @apply absolute;
+    top: -4px;
+    left: calc(50%);
+}
+
+.tabText {
+    @apply relative;
+    @apply text-lg;
+    @apply text-center;
+    @apply text-gray-500;
+    @apply whitespace-no-wrap;
+}
+
+.tabTextActive {
+    @apply relative;
+    @apply text-lg;
+    @apply text-center;
+    color: $primary;
+    @apply whitespace-no-wrap;
 }

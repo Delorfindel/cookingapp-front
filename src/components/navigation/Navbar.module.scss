@@ -22,3 +22,45 @@ html:not([data-scroll="0"]) {
         @apply shadow-lg;
     }
 }
+
+.sidebar {
+    background-color: white !important;
+    z-index: 200 !important;
+    overflow: hidden !important;
+}
+
+.menuLink {
+    color: $grey;
+    cursor: pointer;
+    white-space: nowrap;
+    @apply pr-5;
+}
+
+.menuLink:hover,
+.menuLink:active,
+.menuLinkSub:hover,
+.menuLinkSub:active {
+    color: $primary;
+}
+
+.sidebarMenu {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebarMenu .menuLink {
+    margin: 20px 0 !important;
+    cursor: pointer;
+    white-space: nowrap;
+    @apply text-xl;
+    @apply text-center;
+    color: $grey;
+    padding-right: 0;
+}
+
+.sidebarMenu .menuLink:hover,
+.sidebarMenu .menuLink:active,
+.sidebarMenu .menuLinkSub:hover,
+.sidebarMenu .menuLinkSub:active {
+    color: $primary;
+}

@@ -3,6 +3,8 @@ import _ from 'lodash';
 import { useQuery } from '@apollo/client';
 import { useAuthContext } from '@contexts/AuthContext';
 import AuthService from '@services/auth';
+import Link from 'next/link';
+import styles from './LoginForm.module.scss';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('anthony@test.com');
@@ -28,17 +30,17 @@ export default function LoginForm() {
 
   return (
     <>
-      <div className="h-screen flex justify-center items-center">
-        <form className="bg-white shadow-lg rounded-xl px-8 pt-6 pb-8 mb-4 w-5/6 lg:w-1/2" onSubmit={handleSubmit}>
+      <div className={styles.wrapper}>
+        <form className="w-5/6 px-8 pt-6 pb-8 mb-4 bg-white shadow-lg rounded-xl lg:w-1/2" onSubmit={handleSubmit}>
           <div className="items-center mb-6">
             <div className="">
-              <label className="block text-gray-500 mb-1 pr-4">
+              <label className="block pr-4 mb-1 text-gray-500">
                 Email
               </label>
             </div>
             <div className="">
               <input
-                className="bg-white shadow-lg appearance-none rounded-xl w-full py-2 px-4 text-gray-700"
+                className="w-full px-4 py-2 text-gray-700 bg-white shadow-lg appearance-none rounded-xl"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -47,7 +49,7 @@ export default function LoginForm() {
           </div>
           <div className="items-center mb-4">
             <div className="">
-              <label className="block text-gray-500 mb-1 pr-4">
+              <label className="block pr-4 mb-1 text-gray-500">
                 Mot de passe
               </label>
             </div>
@@ -64,21 +66,33 @@ export default function LoginForm() {
             {error
               && (
               <div className="flex flex-1 mt-2">
-                <a className="text-sm  text-red-500" href="#">
+                <a className="text-sm text-red-500" href="#">
                   Mot de passe ou email incorrect.
                 </a>
               </div>
               )}
           </div>
-          <div className="flex justify-end flex-1 mb-5 pb-5 border-b border-gray-400">
-            <a className="text-sm  primary" href="#">
+          <div className="flex justify-end flex-1 pb-5 mb-5 border-b border-gray-400">
+            <a className="text-sm primary" href="#">
               Mot de passe oublié ?
             </a>
           </div>
           <div className="flex justify-center mt-5">
-            <button type="submit" className="md:w-1/2 w-full cta">
+            <button type="submit" className="w-full md:w-1/2 cta">
               <p>se connecter</p>
             </button>
+          </div>
+          <div className="flex flex-row items-center justify-between px-4">
+            <Link passHref href="/">
+              <a className="mt-5 text-center primary" href="/">
+                ← Retour
+              </a>
+            </Link>
+            <Link passHref href="/register">
+              <a className="mt-5 text-center primary" href="/register">
+                S'inscrire
+              </a>
+            </Link>
           </div>
         </form>
       </div>

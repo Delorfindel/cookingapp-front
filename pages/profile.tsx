@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import HeaderWrapper from '@components/profile/HeaderWrapper';
 import { gql } from '@apollo/client';
 import { getApolloClient } from '@lib/getApolloClient';
 import RecipesList from '@components/profile/RecipesList';
 import AuthService from '@services/auth';
+import TabsHeader from 'src/components/profile/TabsHeader';
+
 
 const GETUSERRECIPES_QUERY = (username) => gql`
     query {
@@ -33,12 +35,21 @@ const GETUSERRECIPES_QUERY = (username) => gql`
     }
 `;
 
+export enum TABS {
+  MESRECETTES = 'MESRECETTES',
+  MESLIKES = 'MESLIKES',
+}
+
+
 export default function Profile({ user, recipes }) {
+  const [Tab, setTab] = useState(TABS.MESRECETTES);
   return (
-    <>
+    <div className="relative z-50">
       <HeaderWrapper user={user} />
-      <RecipesList recipes={recipes} />
-    </>
+      <TabsHeader Tab={Tab} setTab={setTab} />
+      {Tab === TABS.MESRECETTES
+      && <RecipesList recipes={recipes} />}
+    </div>
   );
 }
 

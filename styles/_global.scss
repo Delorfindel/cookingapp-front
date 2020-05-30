@@ -175,15 +175,15 @@ button:focus {
   background: white;
   color: $primary !important;
   border: solid 2px $primary;
-  border-radius: $cta-radius;
-  padding: 15px 25px;
-  //margin: 0 !important;
+  @apply rounded-full;
+  @apply py-4;
+  @apply px-5;
+  @apply text-lg;
   cursor: pointer !important;
   transition: 0.5s;
-  @apply text-lg;
 
   &:hover {
-    @include linear-gradient(left, $deep-blue);
+    background: $primary;
     color: white !important;
     transition: 0.5s;
   }
