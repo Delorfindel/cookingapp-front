@@ -7,17 +7,17 @@ import { ReactComponent as UserIcon } from '@public/svg/userIcon.svg';
 const HeaderWrapper = (user) => (
   <>
     <div className="container p-5 mx-auto">
-      <div className="flex flex-row justify-start items-start pb-6 mb-6 border-b border-gray-400">
-        <div className="flex-0 mr-2">
+      <div className="flex flex-row items-start justify-start pb-6 mb-6 border-b border-gray-400">
+        <div className="mr-2 flex-0">
           <img
             alt="avatar"
-            className="shadow-xl h-20 w-20 rounded-full"
-            src={user.avatar.url}
+            className="w-20 h-20 rounded-full shadow-xl"
+            src={user?.avatar?.url}
           />
         </div>
-        <div className="flex-2 ml-2">
-          <p className="text-xl capitalize primary">{user.username}</p>
-          <p className="text-md grey">{user.email}</p>
+        <div className="ml-2 flex-2">
+          <p className="text-xl capitalize primary">{user?.username}</p>
+          <p className="text-md grey">{user?.email}</p>
         </div>
       </div>
       <div className="flex flex-row h-16 bg-grey">
