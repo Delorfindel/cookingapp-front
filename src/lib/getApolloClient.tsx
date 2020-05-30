@@ -1,28 +1,22 @@
 import {
-  ApolloClient, HttpLink, InMemoryCache,
+  ApolloClient, HttpLink, InMemoryCache, ApolloLink,
 } from '@apollo/client';
-// import ApolloClient from 'apollo-boost';
-import { setContext } from 'apollo-link-context';
 
-// OLD VERSION
 const URI = new HttpLink({
   uri: 'https://cookingapp-back.herokuapp.com/graphql',
   fetch,
 });
 
-const authLink = (token) => {
-  const auth = setContext((_, { headers }) => ({
+const authLink = (token) => new ApolloLink((operation, forward) => {
+  operation.setContext(({
     headers: {
-      ...headers,
       authorization: token ? `Bearer ${token}` : '',
     },
   }));
-  console.log('auth', auth);
-  return auth.concat(URI);
-};
-
+  return forward(operation);
+});
 
 export const getApolloClient = (ctx, token) => new ApolloClient({
   cache: new InMemoryCache(),
-  link: authLink(token),
+  link: authLink(token).concat(URI),
 });
