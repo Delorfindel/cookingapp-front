@@ -1,11 +1,23 @@
-import withApollo from 'next-with-apollo';
-import { ApolloClient, InMemoryCache } from '@apollo/client';
-import { NormalizedCacheObject } from 'apollo-cache-inmemory';
+// import withApollo from 'next-with-apollo';
+// import {
+//   ApolloClient, HttpLink, InMemoryCache, ApolloLink,
+// } from '@apollo/client';
+// import { getApolloClient } from './getApolloClient';
 
-export default withApollo(
-  ({ initialState, ctx }) => new ApolloClient<NormalizedCacheObject>({
-    uri: 'https://cyberpatrimoine-backend.herokuapp.com/graphql',
-    cache: new InMemoryCache().restore(initialState || {}),
-    ssrMode: Boolean(ctx),
-  }),
-);
+// const URI = new HttpLink({
+//   uri: 'https://cookingapp-back.herokuapp.com/graphql',
+//   fetch,
+// });
+
+// const authLink = (token) => new ApolloLink((operation, forward) => {
+//   operation.setContext(({
+//     headers: {
+//       authorization: token ? `Bearer ${token}` : '',
+//     },
+//   }));
+//   return forward(operation);
+// });
+
+// export default withApollo(
+//   ({ initialState, ctx }) => getApolloClient(ctx, null),
+// );

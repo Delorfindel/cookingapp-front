@@ -5,8 +5,8 @@ import { ApolloProvider, ApolloClient } from '@apollo/client';
 import withApollo from '@lib/withApollo';
 import { initialStateUI, UIReducer } from '@reducers/UIReducer';
 import { UIProvider } from '@contexts/UIContext';
-import { AuthProvider } from '@contexts/AuthContext'
-import { initialStateAuth, AuthReducer } from '@reducers/AuthReducer'
+import { AuthProvider } from '@contexts/AuthContext';
+import { initialStateAuth, AuthReducer } from '@reducers/AuthReducer';
 import 'styles/tailwind.css';
 import 'styles/_global.scss';
 import Navbar from '@components/navigation/Navbar';
@@ -33,21 +33,23 @@ class MyApp extends App<IProps> {
           <meta name="google" content="notranslate" />
           {/* favicon */}
         </Head>
-        <ApolloProvider client={apollo}>
-          <UIProvider initialState={initialStateUI} reducer={UIReducer}>
-            <AuthProvider initialState={initialStateAuth} reducer={AuthReducer}>
-              <div id="panel">
-                <Navbar />
-                <div id="page-wrap">
-                  <Component {...pageProps} />
-                </div>
+        {/* <ApolloProvider client={apollo}> */}
+        <UIProvider initialState={initialStateUI} reducer={UIReducer}>
+          <AuthProvider initialState={initialStateAuth} reducer={AuthReducer}>
+            <div id="panel">
+              <Navbar />
+              <div id="page-wrap">
+                <Component {...pageProps} />
               </div>
-            </AuthProvider>
-          </UIProvider>
-        </ApolloProvider>
+            </div>
+          </AuthProvider>
+        </UIProvider>
+        {/* </ApolloProvider> */}
       </>
     );
   }
 }
 
-export default withApollo(MyApp);
+export default MyApp;
+
+// export default withApollo(MyApp);
