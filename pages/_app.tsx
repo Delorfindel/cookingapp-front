@@ -2,7 +2,7 @@ import React from 'react';
 import App from 'next/app';
 import Head from 'next/head';
 import { ApolloProvider, ApolloClient } from '@apollo/client';
-import withApollo from '@lib/withApollo';
+//import withApollo from '@lib/withApollo';
 import { initialStateUI, UIReducer } from '@reducers/UIReducer';
 import { UIProvider } from '@contexts/UIContext';
 import { AuthProvider } from '@contexts/AuthContext';
