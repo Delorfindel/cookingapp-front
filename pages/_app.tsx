@@ -33,7 +33,7 @@ class MyApp extends App<IProps> {
     return (
       <>
         <Head>
-          <title>FamilyCook</title>
+          <title>FamilyCookc</title>
           <meta name="theme-color" content="#08A9FA" />
           <meta charSet="utf-8" />
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -58,6 +58,7 @@ class MyApp extends App<IProps> {
     );
   }
 }
+
 
 export default MyApp;
 
