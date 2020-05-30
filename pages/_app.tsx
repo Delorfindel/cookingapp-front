@@ -31,7 +31,7 @@ Router.events.on('routeChangeError', () => NProgress.done());
 class MyApp extends App<IProps> {
   render() {
     const { Component, pageProps, apollo } = this.props;
-    console.log('pageProps', pageProps);
+    // console.log('pageProps', pageProps);
 
     const initialStateAuth = {
       isLogged: pageProps?.user !== null,
