@@ -16,7 +16,7 @@ const HomeAnimation = () => {
             },
             name: 'enterFrame',
           }]}
-        playingState={Toggle}
+        playingState={Toggle as ReactLottiePlayingState}
         config={{
           animationData, loop: false, autoplay: true,
         }}
