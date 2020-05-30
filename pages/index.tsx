@@ -30,8 +30,6 @@ export async function getServerSideProps(ctx) {
 
 
   return auth.me(token).then(async (user:any) => {
-    console.log('wsedrftgtfrew');
-
     ctx.res.writeHeader(307, { Location: '/feed' });
     ctx.res.end();
     return { props: { logged: false } };

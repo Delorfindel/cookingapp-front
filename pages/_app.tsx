@@ -12,10 +12,19 @@ import 'styles/_global.scss';
 import Navbar from '@components/navigation/Navbar';
 import 'typeface-roboto';
 import 'typeface-playfair-display';
+import NProgress from 'nprogress'; //nprogress module
+// import 'nprogress/nprogress.css';
+import Router from 'next/router';
 
 interface IProps {
   apollo: ApolloClient<any>,
 }
+
+//Binding events.
+NProgress.configure({ showSpinner: false });
+Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
 
 class MyApp extends App<IProps> {
   render() {
