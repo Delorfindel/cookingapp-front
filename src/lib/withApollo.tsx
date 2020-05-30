@@ -1,4 +1,6 @@
-// import withApollo from 'next-with-apollo';
+const bite = null;
+export default bite;
+//  import withApollo from 'next-with-apollo';
 // import {
 //   ApolloClient, HttpLink, InMemoryCache, ApolloLink,
 // } from '@apollo/client';
