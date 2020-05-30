@@ -21,13 +21,25 @@ constructor() {
     Router.push('/');
   }
 
+  register = (username, email, password) => new Promise((resolve, reject) => {
+    Axios.post(`${url}/auth/local/register`, {
+      email,
+      username,
+      password
+    }).then((res) => res.data).then((data) => {
+      this.saveToken(data.jwt);
+      Router.push('/');
+      return resolve(data);
+    }).catch((err) => reject(err));
+  });
+
   login = (identifier, password) => new Promise((resolve, reject) => {
     Axios.post(`${url}/auth/local`, {
       identifier,
       password,
     }).then((res) => res.data).then((data) => {
       this.saveToken(data.jwt);
-      Router.push('/profile');
+      Router.push('/');
       return resolve(data);
     }).catch((err) => reject({ message: 'Invalid email or password.' }));
   });
