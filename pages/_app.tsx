@@ -6,7 +6,7 @@ import { ApolloProvider, ApolloClient } from '@apollo/client';
 import { initialStateUI, UIReducer } from '@reducers/UIReducer';
 import { UIProvider } from '@contexts/UIContext';
 import { AuthProvider } from '@contexts/AuthContext';
-import { initialStateAuth, AuthReducer } from '@reducers/AuthReducer';
+import { AuthReducer } from '@reducers/AuthReducer';
 import 'styles/tailwind.css';
 import 'styles/_global.scss';
 import Navbar from '@components/navigation/Navbar';
@@ -16,8 +16,10 @@ import NProgress from 'nprogress'; //nprogress module
 // import 'nprogress/nprogress.css';
 import Router from 'next/router';
 
+
 interface IProps {
   apollo: ApolloClient<any>,
+
 }
 
 //Binding events.
@@ -29,6 +31,12 @@ Router.events.on('routeChangeError', () => NProgress.done());
 class MyApp extends App<IProps> {
   render() {
     const { Component, pageProps, apollo } = this.props;
+    console.log('pageProps', pageProps);
+
+    const initialStateAuth = {
+      isLogged: pageProps?.user !== null,
+      user: pageProps?.user !== null ? pageProps?.user : {},
+    };
 
     return (
       <>
