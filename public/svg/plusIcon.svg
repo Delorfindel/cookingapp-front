@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="13.091" height="13.091" viewBox="0 0 13.091 13.091">
   <g id="Icon_feather-plus" data-name="Icon feather-plus" transform="translate(1 1)">
-    <path id="Tracé_3" data-name="Tracé 3" d="M5,2.083V13.174" transform="translate(0.545 -2.083)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-    <path id="Tracé_4" data-name="Tracé 4" d="M2.083,5H13.174" transform="translate(-2.083 0.545)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path id="Tracé_3" data-name="Tracé 3" d="M5,2.083V13.174" transform="translate(0.545 -2.083)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="10"/>
+    <path id="Tracé_4" data-name="Tracé 4" d="M2.083,5H13.174" transform="translate(-2.083 0.545)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="10"/>
   </g>
 </svg>

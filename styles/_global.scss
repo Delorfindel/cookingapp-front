@@ -198,6 +198,11 @@ button:focus {
   display: none !important;
 }
 
+
+.bg-primary {
+  background: $primary;
+}
+
 .bg-mygrey {
   background: $bg-gray;
 }
@@ -273,5 +278,5 @@ button:focus {
 }
 
 .font-variant {
-  font-family: $header-font !important;
+  // font-family: $header-font !important;
 }
