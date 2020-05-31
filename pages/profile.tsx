@@ -12,6 +12,7 @@ query RecipesOfUser($id: ID!) {
         id
         username
         ownedrecipes {
+          id
           name
           banner {
             url

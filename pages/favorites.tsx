@@ -9,6 +9,7 @@ const GETRECIPESFAVORITES_QUERY = gql`
 query RecipesFavorites($id: ID!) {
   user(id: $id) {
     favorites {
+      id
       name
       banner {
         url
