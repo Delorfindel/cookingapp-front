@@ -2,7 +2,7 @@ import React from 'react';
 import App from 'next/app';
 import Head from 'next/head';
 import { ApolloProvider, ApolloClient } from '@apollo/client';
-//import withApollo from '@lib/withApollo';
+// import withApollo from '@lib/withApollo';
 import { initialStateUI, UIReducer } from '@reducers/UIReducer';
 import { UIProvider } from '@contexts/UIContext';
 import { AuthProvider } from '@contexts/AuthContext';
@@ -15,6 +15,7 @@ import 'typeface-playfair-display';
 import NProgress from 'nprogress'; //nprogress module
 // import 'nprogress/nprogress.css';
 import Router from 'next/router';
+import { getApolloClient } from 'src/lib/getApolloClient';
 
 
 interface IProps {
@@ -31,14 +32,15 @@ Router.events.on('routeChangeError', () => NProgress.done());
 class MyApp extends App<IProps> {
   render() {
     const { Component, pageProps, apollo } = this.props;
-    // console.log('pageProps', pageProps);
+    console.log('apollo', apollo);
 
     const initialStateAuth = {
       isLogged: pageProps?.user !== undefined && pageProps?.user !== null,
       user: (pageProps?.user !== undefined && pageProps?.user !== null) ? pageProps.user : {},
-      // isLogged: false,
       // user: null,
     };
+
+    const client = getApolloClient(initialStateAuth.user.token);
 
     return (
       <>
@@ -52,18 +54,18 @@ class MyApp extends App<IProps> {
           <meta name="google" content="notranslate" />
           {/* favicon */}
         </Head>
-        {/* <ApolloProvider client={apollo}> */}
-        <UIProvider initialState={initialStateUI} reducer={UIReducer}>
-          <AuthProvider initialState={initialStateAuth} reducer={AuthReducer}>
-            <div id="panel">
-              <Navbar />
-              <div id="page-wrap">
-                <Component {...pageProps} />
+        <ApolloProvider client={client}>
+          <UIProvider initialState={initialStateUI} reducer={UIReducer}>
+            <AuthProvider initialState={initialStateAuth} reducer={AuthReducer}>
+              <div id="panel">
+                <Navbar />
+                <div id="page-wrap">
+                  <Component {...pageProps} />
+                </div>
               </div>
-            </div>
-          </AuthProvider>
-        </UIProvider>
-        {/* </ApolloProvider> */}
+            </AuthProvider>
+          </UIProvider>
+        </ApolloProvider>
       </>
     );
   }
@@ -72,4 +74,4 @@ class MyApp extends App<IProps> {
 
 export default MyApp;
 
-// export default withApollo(MyApp);
+// export default withApollo({ ssr: false })(MyApp);

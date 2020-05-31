@@ -16,7 +16,7 @@ const authLink = (token) => new ApolloLink((operation, forward) => {
   return forward(operation);
 });
 
-export const getApolloClient = (ctx, token) => new ApolloClient({
+export const getApolloClient = (token) => new ApolloClient({
   cache: new InMemoryCache(),
   link: authLink(token).concat(URI),
 });

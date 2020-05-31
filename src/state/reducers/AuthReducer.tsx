@@ -1,5 +1,6 @@
 import Cookies from 'universal-cookie';
 
+
 export const initialStateAuth = {
   isLogged: false,
   user: {},

@@ -42,13 +42,13 @@ export async function getServerSideProps(ctx) {
 
 
   return auth.me(token).then(async (user:any) => {
-    const ApolloClient = getApolloClient(ctx, token);
+    const ApolloClient = getApolloClient(token);
     const { id } = user;
     const { data } = await ApolloClient.query({
       query: GETRECIPESFAVORITES_QUERY,
       variables: { id },
     });
-    return { props: { user, recipes: data.user.favorites } };
+    return { props: { user: { ...user, token }, recipes: data.user.favorites } };
   }).catch((err) => {
     ctx.res.writeHeader(307, { Location: '/' });
     ctx.res.end();

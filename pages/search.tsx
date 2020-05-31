@@ -21,7 +21,7 @@ export async function getServerSideProps(ctx) {
   const token = auth.getTokenSSR(ctx);
 
   return auth.me(token).then(async (user:any) => {
-    const ApolloClient = getApolloClient(ctx, token);
+    const ApolloClient = getApolloClient(token);
     return { props: { user } };
   }).catch((err) => {
     ctx.res.writeHeader(307, { Location: '/' });
