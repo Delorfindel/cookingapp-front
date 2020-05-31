@@ -14,7 +14,6 @@ import styles from './RecipesList.module.scss';
 
 
 const CardWrapper = (e, addToFavorites, id, index, favorites) => (
-
   <div
     key={index}
     className="grid grid-cols-12 p-2 overflow-hidden bg-white shadow-lg rounded-xl"
@@ -58,38 +57,19 @@ const CardWrapper = (e, addToFavorites, id, index, favorites) => (
     <div
       className="col-start-12 col-end-13 pt-1 pr-1"
       onClick={() => {
-        if (favorites === [] || _.findIndex(favorites, (favorite) => favorite === e.id) === -1) {
-          console.log('add');
-          if (favorites === []) favorites = [e.id];
-          else favorites = [...favorites, e.id];
-          console.log('added results to pass', favorites);
-          addToFavorites(
-            {
-              variables: { id, recipeID: favorites },
-              optimisticResponse: {
-                __typename: 'UsersPermissionsUser',
-                updateUser: {
-                  favorites,
-                },
+        if (favorites === [] || _.findIndex(favorites, (favorite) => favorite === e.id) === -1) favorites.push(e.id);
+        else { _.remove(favorites, (favorite) => favorite === e.id); }
+        addToFavorites(
+          {
+            variables: { id, recipeID: favorites },
+            optimisticResponse: {
+              __typename: 'UsersPermissionsUser',
+              updateUser: {
+                favorites,
               },
             },
-          );
-        } else {
-          console.log('remove');
-          _.remove(favorites, (favorite) => favorite === e.id);
-          console.log('removed results to pass', favorites);
-          addToFavorites(
-            {
-              variables: { id, recipeID: favorites },
-              optimisticResponse: {
-                __typename: 'UsersPermissionsUser',
-                updateUser: {
-                  favorites,
-                },
-              },
-            },
-          );
-        }
+          },
+        );
       }}
     >
       {
@@ -101,13 +81,12 @@ const CardWrapper = (e, addToFavorites, id, index, favorites) => (
             />
           )
           : (
-            <UserIcon
+            <SavedIcon
               width="20"
               height="20"
             />
           )
       }
-
     </div>
   </div>
 );
@@ -125,14 +104,11 @@ export default function RecipesList({ recipes }) {
       tempArray = [];
       _.forEach(data?.updateUser?.user?.favorites, (e) => {
         tempArray.push(e.id);
-        // console.log('Favorites', tempArray);
       });
       setFavorites(tempArray);
     }
   }, [data]);
-
   console.log('-->Favorites', Favorites);
-
   return (
     <>
       <div className="grid grid-flow-row grid-cols-1 gap-5 px-5 pb-5">
