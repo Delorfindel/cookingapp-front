@@ -11,7 +11,7 @@ const GETRECIPES_QUERY = gql`
     query {
       recipes {
         id,
-        user {
+        author {
           id, 
           username
         },

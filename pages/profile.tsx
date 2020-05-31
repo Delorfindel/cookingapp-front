@@ -6,31 +6,20 @@ import RecipesList from '@components/profile/RecipesList';
 import AuthService from '@services/auth';
 import TabsHeader from 'src/components/profile/TabsHeader';
 
-
-const GETUSERRECIPES_QUERY = (username) => gql`
-    query {
-      recipes (where: {
-		user: {
-			username:"${username}"
-		}
-		}) {
-        id,
-        user {
-          id, 
-          username
-        },
-        name,
-        Ingredients,
-        Etapes,
-        banner {
-          url
-        },
-        galerie {
-          url
-        },
-        temps,
-        difficulty,
-        note
+const GETUSERRECIPES_QUERY = gql`
+query RecipesOfUser($id: ID!) {
+  user(id: $id) {
+        id
+        username
+        ownedrecipes {
+          name
+          banner {
+            url
+          },
+          temps,
+          difficulty,
+          note
+        }
       }
     }
 `;
@@ -60,9 +49,10 @@ export function getServerSideProps(ctx) {
   return auth.me(token).then(async (user:any) => {
     const ApolloClient = getApolloClient(ctx, token);
     const { data } = await ApolloClient.query({
-      query: GETUSERRECIPES_QUERY(user?.username || ''),
+      query: GETUSERRECIPES_QUERY,
+      variables: { id: user.id },
     });
-    return { props: { user, recipes: data.recipes } };
+    return { props: { user, recipes: data.user.ownedrecipes } };
   }).catch((err) => {
     ctx.res.writeHeader(307, { Location: '/login' });
     ctx.res.end();

@@ -58,7 +58,7 @@ const BottomNav = () => {
           </div>
         </Link>
         <Link href="/profile">
-          {!user.avatar?.url ? (
+          {!user?.avatar?.url ? (
             <div className="mx-4 cursor-pointer">
               <UserIcon
                 width="30"
