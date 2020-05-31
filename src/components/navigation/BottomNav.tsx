@@ -69,12 +69,11 @@ const BottomNav = () => {
           )
             : (
               <div className="mx-4 overflow-hidden rounded-full shadow-lg cursor-pointer">
-
                 <img
                   alt="profile img"
                   className="object-cover"
                   style={{ height: '30px', width: '30px' }}
-                  src={user.avatar.url}
+                  src={user?.avatar?.url}
                 />
               </div>
             )}
