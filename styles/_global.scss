@@ -40,6 +40,10 @@ button:focus {
   outline: 0 !important;
 }
 
+#page-wrap{
+  padding-bottom: 70px;
+}
+
 #page-wrap:not(.replaceNavbar) {
   margin-top: 60px;
 }

@@ -34,8 +34,10 @@ class MyApp extends App<IProps> {
     // console.log('pageProps', pageProps);
 
     const initialStateAuth = {
-      isLogged: pageProps?.user !== null,
-      user: pageProps?.user !== null ? pageProps?.user : {},
+      isLogged: pageProps?.user !== undefined && pageProps?.user !== null,
+      user: (pageProps?.user !== undefined && pageProps?.user !== null) ? pageProps.user : {},
+      // isLogged: false,
+      // user: null,
     };
 
     return (

@@ -33,7 +33,7 @@ const CardWrapper = (e) => (
             className="mr-2"
           />
           <p className="capitalize primary">
-            {e.user.username}
+            {e.author.username}
           </p>
         </div>
         <p className="text-sm grey">
@@ -53,9 +53,9 @@ const CardWrapper = (e) => (
   </Link>
 );
 
-export default function RecipesList() {
-  const [FeedState, dispatch] = useFeedContext();
-  const { recipes } = FeedState;
+export default function RecipesList({ recipes }) {
+  // const [FeedState, dispatch] = useFeedContext();
+  // const { recipes } = FeedState;
 
   return (
     <div className="grid grid-flow-row grid-cols-1 gap-5 px-5 pb-5">
