@@ -5,6 +5,7 @@ import { useUIContext } from 'src/state/contexts/UIContext';
 import { useAuthContext } from 'src/state/contexts/AuthContext';
 import styles from './Navbar.module.scss';
 import MenuDrawer from './MenuDrawer';
+import BottomNav from './BottomNav';
 
 const Navbar = () => {
   const [uiState, dispatch] = useUIContext();
@@ -62,6 +63,7 @@ const Navbar = () => {
         </div>
       </div>
       <MenuDrawer />
+      <BottomNav />
     </>
   );
 };

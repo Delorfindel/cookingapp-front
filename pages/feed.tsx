@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import React from 'react';
 import Feed from '@components/feed/Feed';
-import { gql } from '@apollo/client';
+import { gql, useMutation } from '@apollo/client';
 import { getApolloClient } from '@lib/getApolloClient';
 import { FeedProvider } from '@contexts/FeedContext';
 import { FeedReducer } from '@reducers/FeedReducer';
@@ -11,7 +11,7 @@ const GETRECIPES_QUERY = gql`
     query {
       recipes {
         id,
-        user {
+        author {
           id, 
           username
         },
@@ -52,11 +52,11 @@ export async function getServerSideProps(ctx) {
 
 
   return auth.me(token).then(async (user:any) => {
-    const ApolloClient = getApolloClient(ctx, token);
+    const ApolloClient = getApolloClient(token);
     const { data } = await ApolloClient.query({
       query: GETRECIPES_QUERY,
     });
-    return { props: { user, recipes: data.recipes } };
+    return { props: { user: { ...user, token }, recipes: data.recipes } };
   }).catch((err) => {
     ctx.res.writeHeader(307, { Location: '/' });
     ctx.res.end();

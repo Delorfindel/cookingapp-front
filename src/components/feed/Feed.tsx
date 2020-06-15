@@ -6,10 +6,12 @@ import ActionsHeader from './ActionsHeader';
 import RecipesList from './RecipesList';
 
 export default function Feed() {
+  const [FeedState, dispatch] = useFeedContext();
+  const { recipes } = FeedState;
   return (
     <>
       <ActionsHeader />
-      <RecipesList />
+      <RecipesList recipes={recipes} />
     </>
   );
 }

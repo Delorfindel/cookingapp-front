@@ -40,6 +40,10 @@ button:focus {
   outline: 0 !important;
 }
 
+#page-wrap{
+  padding-bottom: 70px;
+}
+
 #page-wrap:not(.replaceNavbar) {
   margin-top: 60px;
 }
@@ -198,6 +202,11 @@ button:focus {
   display: none !important;
 }
 
+
+.bg-primary {
+  background: $primary;
+}
+
 .bg-mygrey {
   background: $bg-gray;
 }
@@ -273,5 +282,5 @@ button:focus {
 }
 
 .font-variant {
-  font-family: $header-font !important;
+  // font-family: $header-font !important;
 }

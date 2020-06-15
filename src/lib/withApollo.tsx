@@ -1,25 +1,30 @@
-const bite = null;
-export default bite;
-//  import withApollo from 'next-with-apollo';
-// import {
-//   ApolloClient, HttpLink, InMemoryCache, ApolloLink,
-// } from '@apollo/client';
-// import { getApolloClient } from './getApolloClient';
+// import withApollo from 'next-with-apollo';
+import { withApollo } from 'next-apollo';
+import {
+  ApolloClient,
+  HttpLink, ApolloLink, InMemoryCache,
+} from '@apollo/client';
 
-// const URI = new HttpLink({
-//   uri: 'https://cookingapp-back.herokuapp.com/graphql',
-//   fetch,
-// });
+// import ApolloClient, { InMemoryCache } from 'apollo-boost';
 
-// const authLink = (token) => new ApolloLink((operation, forward) => {
-//   operation.setContext(({
-//     headers: {
-//       authorization: token ? `Bearer ${token}` : '',
-//     },
-//   }));
-//   return forward(operation);
-// });
+const URI = new HttpLink({
+  uri: 'https://cookingapp-back.herokuapp.com/graphql',
+  fetch,
+});
 
-// export default withApollo(
-//   ({ initialState, ctx }) => getApolloClient(ctx, null),
-// );
+const authLink = (token) => new ApolloLink((operation, forward) => {
+  operation.setContext(({
+    headers: {
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  }));
+  return forward(operation);
+});
+
+
+const apolloClient = new ApolloClient({
+  uri: 'https://cookingapp-back.herokuapp.com/graphql',
+  cache: new InMemoryCache(),
+});
+
+export default withApollo(apolloClient);

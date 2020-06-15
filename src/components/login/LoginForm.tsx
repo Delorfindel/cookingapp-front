@@ -16,7 +16,7 @@ export default function LoginForm() {
     e.preventDefault();
     setError(false);
     const auth = new AuthService();
-    auth.login(email, password).then(({ jwt, user }) => {
+    auth.login(email, password).then(({ user }) => {
       dispatch({
         type: 'addUser',
         payload: { user },

@@ -14,12 +14,24 @@ constructor() {
   this.cookie = new Cookies();
 }
 
-  saveToken = (t) => this.cookie.set(storageTokenKey, t, { path: '/' });
+  saveToken = (t) => this.cookie.set(storageTokenKey, t, { path: '/', maxAge: 365 * 24 * 60 * 60 * 1000 });
 
   logout = () => {
     this.cookie.remove(storageTokenKey);
     Router.push('/');
   }
+
+  register = (username, email, password) => new Promise((resolve, reject) => {
+    Axios.post(`${url}/auth/local/register`, {
+      email,
+      username,
+      password
+    }).then((res) => res.data).then((data) => {
+      this.saveToken(data.jwt);
+      Router.push('/');
+      return resolve(data);
+    }).catch((err) => reject(err));
+  });
 
   login = (identifier, password) => new Promise((resolve, reject) => {
     Axios.post(`${url}/auth/local`, {
@@ -27,7 +39,7 @@ constructor() {
       password,
     }).then((res) => res.data).then((data) => {
       this.saveToken(data.jwt);
-      Router.push('/profile');
+      Router.push('/');
       return resolve(data);
     }).catch((err) => reject({ message: 'Invalid email or password.' }));
   });
