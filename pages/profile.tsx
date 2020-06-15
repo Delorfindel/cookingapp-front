@@ -8,25 +8,7 @@ import RecipesList from '@components/profile/RecipesList';
 import AuthService from '@services/auth';
 import TabsHeader from 'src/components/profile/TabsHeader';
 import withApollo from 'src/lib/withApollo';
-
-const GETUSERRECIPES_QUERY = gql`
-query RecipesOfUser($id: ID!) {
-  user(id: $id) {
-        id
-        username
-        ownedrecipes {
-          id
-          name
-          banner {
-            url
-          },
-          temps,
-          difficulty,
-          note
-        }
-      }
-    }
-`;
+import GET_USER_RECIPES from 'src/queries/getUserRecipes'
 
 const QUERY = gql`
 mutation updateUser($id: ID!, $userName: String!) {
@@ -70,7 +52,7 @@ export default function Profile({ user, recipes }) {
       <button
         type="button"
         className="w-full cta"
-        onClick={() => changeUsername({ variables: { id: '5ecaf9176700fc5a5b7b80d7', userName: 'Anthony' } })}
+        onClick={() => changeUsername({ variables: { id: '5ecaf9176700fc5a5b7b80d7', userName: 'Tamere' } })}
       >
         Change
       </button>
@@ -88,7 +70,7 @@ export function getServerSideProps(ctx) {
   return auth.me(token).then(async (user:any) => {
     const ApolloClient = getApolloClient(token);
     const { data } = await ApolloClient.query({
-      query: GETUSERRECIPES_QUERY,
+      query: GET_USER_RECIPES,
       variables: { id: user.id },
     });
     return { props: { user: { ...user, token }, recipes: data.user.ownedrecipes } };
