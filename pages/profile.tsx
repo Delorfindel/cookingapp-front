@@ -49,15 +49,15 @@ export default function Profile({ user, recipes }) {
     <div className="relative z-50">
       <HeaderWrapper user={User} />
       <TabsHeader Tab={Tab} setTab={setTab} />
-      <button
+      {/* <button
         type="button"
         className="w-full cta"
         onClick={() => changeUsername({ variables: { id: '5ecaf9176700fc5a5b7b80d7', userName: 'Tamere' } })}
       >
         Change
-      </button>
+      </button> */}
       {Tab === TABS.MESRECETTES
-      && <RecipesList recipes={recipes} />}
+        && <RecipesList recipes={recipes} />}
     </div>
   );
 }
@@ -67,7 +67,7 @@ export function getServerSideProps(ctx) {
   const auth = new AuthService();
   const token = auth.getTokenSSR(ctx);
 
-  return auth.me(token).then(async (user:any) => {
+  return auth.me(token).then(async (user: any) => {
     const ApolloClient = getApolloClient(token);
     const { data } = await ApolloClient.query({
       query: GET_USER_RECIPES,
