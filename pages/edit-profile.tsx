@@ -152,7 +152,7 @@ export default function EditProfile({ user }) {
           <button type="submit" className="px-3 py-1 rounded-xl text-white mr-2" style={{ backgroundColor: '#fe7753' }}>
             <p className="text-md">Enregistrer</p>
           </button>
-          <button type="button" className="primary" onClick={(e) => Router.back()}>Retour</button>
+          <button type="button" className="primary" onClick={(e) => Router.push('/login')}>Retour</button>
         </div>
       </form>
     </div>
