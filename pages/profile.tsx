@@ -10,25 +10,6 @@ import TabsHeader from 'src/components/profile/TabsHeader';
 import withApollo from 'src/lib/withApollo';
 import GET_USER_RECIPES from 'src/queries/getUserRecipes'
 
-const QUERY = gql`
-mutation updateUser($id: ID!, $userName: String!) {
-  updateUser(
-    input: {
-      where: { id: $id }
-      data: { username: $userName }
-    }
-  ) {
-    user {
-      username
-      description
-      avatar {
-        url
-      }
-    }
-  }
-}
-`;
-
 export enum TABS {
   MESRECETTES = 'MESRECETTES',
   MESLIKES = 'MESLIKES',
@@ -37,25 +18,11 @@ export enum TABS {
 
 export default function Profile({ user, recipes }) {
   const [Tab, setTab] = useState(TABS.MESRECETTES);
-  const [changeUsername, { data }] = useMutation(QUERY);
-  const [User, setUser] = useState(user);
-  useEffect(() => {
-    console.log(data);
-    if (data) setUser(data.updateUser.user);
-    else if (!User) setUser(user);
-  }, [data, user]);
 
   return (
     <div className="relative z-50">
-      <HeaderWrapper user={User} />
+      <HeaderWrapper user={user} />
       <TabsHeader Tab={Tab} setTab={setTab} />
-      {/* <button
-        type="button"
-        className="w-full cta"
-        onClick={() => changeUsername({ variables: { id: '5ecaf9176700fc5a5b7b80d7', userName: 'Tamere' } })}
-      >
-        Change
-      </button> */}
       {Tab === TABS.MESRECETTES
         && <RecipesList recipes={recipes} />}
     </div>

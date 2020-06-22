@@ -31,31 +31,19 @@ mutation updateUser($userId: ID!, $inputData: editUserInput!) {
 }
 `;
 
-// const UPLOAD_AVATAR = gql`
-// mutation ($file: Upload!, $refId: ID) {
-//   upload(
-//     file: $file
-//     refId: $refId
-//     ref: "user"
-//     field: "avatar"
-//   ) {
-//     name
-//     url
-//     mime
-//     provider
-//   }
-// }
-// `;
-
 export default function EditProfile({ user }) {
-  // const [uploadAvatar, { uploadAvatardata }] = useMutation(UPLOAD_AVATAR);
-  const [updateUser, updateUserData] = useMutation(UPDATE_USER);
+  const [updateUser] = useMutation(UPDATE_USER);
   const [image, setImage] = useState({ path: '', formData: null });
   const [input, setInput] = useState({
     username: user?.username,
     description: user?.description,
     avatar: user?.avatar?.url,
   });
+
+  const onChangeText = (e) => {
+    setInput({ ...input, [e.target.name]: e.target.value });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (image.formData) {
@@ -71,7 +59,7 @@ export default function EditProfile({ user }) {
               avatar: res.data[0].id,
             },
           },
-        }).then((update) => Router.push('/profile'));
+        }).then(() => Router.push('/profile'));
       });
     } else {
       updateUser({
@@ -82,7 +70,7 @@ export default function EditProfile({ user }) {
             description: input.description,
           },
         },
-      }).then((update) => Router.push('/profile'));
+      }).then(() => Router.push('/profile'));
     }
   };
 
@@ -127,32 +115,32 @@ export default function EditProfile({ user }) {
           </div>
         </div>
         <div className="mb-3">
-          <label className="text-gray-700 text-lg block mb-1" htmlFor="username">
+          <p className="text-gray-700 text-lg mb-1">
             Username
-            <input
-              className="w-full font-light text-gray-600 text-md py-1 px-2 border border-current rounded-lg"
-              value={input.username}
-              id="username"
-              onChange={(e) => setInput({ ...input, username: e.target.value })}
-            />
-          </label>
+          </p>
+          <input
+            className="w-full font-light text-gray-600 text-md py-1 px-2 border border-current rounded-lg"
+            value={input.username}
+            name="username"
+            onChange={onChangeText}
+          />
         </div>
         <div className="mb-3">
-          <label className="text-gray-700 text-lg block mb-1" htmlFor="bio">
+          <p className="text-gray-700 text-lg mb-1">
             Bio
-            <textarea
-              id="bio"
-              className="w-full text-gray-600 font-light text-md py-1 px-2 border border-current rounded-lg"
-              value={input.description}
-              onChange={(e) => setInput({ ...input, description: e.target.value })}
-            />
-          </label>
+          </p>
+          <textarea
+            className="w-full text-gray-600 font-light text-md py-1 px-2 border border-current rounded-lg"
+            value={input.description}
+            name="description"
+            onChange={onChangeText}
+          />
         </div>
         <div className="flex flex-row justify-end">
           <button type="submit" className="px-3 py-1 rounded-xl text-white mr-2" style={{ backgroundColor: '#fe7753' }}>
             <p className="text-md">Enregistrer</p>
           </button>
-          <button type="button" className="primary" onClick={(e) => Router.push('/login')}>Retour</button>
+          <button type="button" className="primary" onClick={() => Router.push('/profile')}>Retour</button>
         </div>
       </form>
     </div>
@@ -165,7 +153,7 @@ export function getServerSideProps(ctx) {
   const token = auth.getTokenSSR(ctx);
 
   return auth.me(token).then(async (user: any) => ({ props: { user: { ...user, token } } }))
-    .catch((err) => {
+    .catch(() => {
       ctx.res.writeHeader(307, { Location: '/login' });
       ctx.res.end();
     });
