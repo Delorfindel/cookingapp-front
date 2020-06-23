@@ -9,6 +9,7 @@ import { getApolloClient } from '@lib/getApolloClient';
 import { ReactComponent as MinusIcon } from '@public/svg/minus.svg';
 import { ReactComponent as EditIcon } from '@public/svg/pencil.svg';
 import { ReactComponent as PlusIcon } from '@public/svg/bottom-plus.svg';
+import { ReactComponent as TimeIcon } from '@public/svg/hourglass.svg';
 import AuthService from '@services/auth';
 import Router from 'next/router';
 
@@ -39,22 +40,34 @@ const BannerPreview = ({ banner, handleBanner }) => (
 );
 
 const GaleryItemUpload = ({ idx, handleGalery }) => (
-  <button key={idx} type="button" className="border-2 border-dashed rounded-lg h-20">
+  <div key={idx.toString()} className="border-2 border-dashed rounded-lg h-20">
     <label htmlFor={`galery-${idx}`} className="h-full w-full flex justify-center items-center">
       <input type="file" id={`galery-${idx}`} className="hidden" onChange={(e) => handleGalery(e, idx)} accept="image/*" />
+      <div>
+        <PlusIcon
+          width="20"
+          height="20"
+          fill="#e2e8f0"
+        />
+      </div>
     </label>
-  </button>
+  </div>
 );
 
-const GaleryItemPreview = ({ src }) => (
-  <div className="relative">
-    <div className="p-1 m-2 bg-white rounded-full shadow-lg absolute " style={{ top: -12, left: -12 }}>
+const GaleryItemPreview = ({ idx, src, removeGaleryItem }) => (
+  <div className="relative" key={idx}>
+    <button
+      type="button"
+      className="p-1 m-2 bg-white rounded-full shadow-lg absolute "
+      style={{ top: -12, left: -12 }}
+      onClick={() => removeGaleryItem(idx)}
+    >
       <MinusIcon
         width="7"
         height="7"
         fill="red"
       />
-    </div>
+    </button>
     <img alt="banner" className="h-20 w-full object-cover rounded-lg shadow-xl" src={src} />
   </div>
 );
@@ -82,10 +95,8 @@ const IngredientWrapperInput = ({ value, addIngredient, setIngredient }) => (
 );
 
 const IngredientWrapperStore = ({ idx, removeIngredient, value }) => (
-  <div key={idx} className="flex  my-1 mx-2 border border-current rounded-lg bg-gray-100">
-    <p
-      className="text-gray-600 font-light text-md py-1 px-2"
-    >
+  <div key={idx} className="flex my-1 mx-2 border border-current rounded-lg bg-gray-100">
+    <p className="text-gray-600 font-light text-md py-1 px-2">
       {value}
     </p>
     <button
@@ -153,6 +164,25 @@ const StepWrapperStore = ({ idx, removeStep, value, stepIdx }) => (
   </div>
 );
 
+const POST_RECIPE = gql`
+mutation updateUser($userId: ID!, $inputData: editUserInput!) {
+  updateUser(
+    input: {
+      where: { id: $userId }
+      data: $inputData
+    }
+  ) {
+    user {
+      username,
+      description
+      avatar {
+        name
+        url
+        ext
+      }
+    }
+  }
+}`;
 
 export default function addRecipe({ user }) {
   const [recipe, setRecipe] = useState({
@@ -167,7 +197,9 @@ export default function addRecipe({ user }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(recipe);
+    console.log('handleSubmit -> recipe', recipe);
+    console.log('addRecipe -> banner', banner);
+    console.log('addRecipe -> galery', galery);
   };
 
   const onChangeText = (e) => {
@@ -185,15 +217,15 @@ export default function addRecipe({ user }) {
     const img = e.target.files[0];
     const formData = new FormData();
     const toAppend = { path: URL.createObjectURL(img), formData };
-    const tmp = galery;
 
-    tmp.splice(idx, 1, toAppend);
-    setGalery([...tmp]);
+    galery[idx] = toAppend;
+    setGalery([...galery]);
   };
 
   const removeGaleryItem = (idx) => {
-    _.remove(galery, (e, i) => i == idx);
-    setGalery({ ...galery });
+    if (galery.length === 3) galery[idx] = { path: null, formData: null };
+    else _.remove(galery, (e, i) => i === idx);
+    setGalery([...galery]);
   };
 
   const addIngredient = () => {
@@ -224,9 +256,11 @@ export default function addRecipe({ user }) {
     setRecipe({ ...recipe, etapes: [...recipe.etapes, { title: '', steps: [] }] });
   };
 
-  useEffect(e => {
-    console.log(recipe.etapes);
-  });
+  useEffect(() => {
+    const addNewItem = _.filter(galery, (g) => g.path === null);
+
+    if (addNewItem.length === 0) setGalery([...galery, { path: null, formData: null }]);
+  }, [galery]);
 
   return (
     <div className="w-full flex flex-col px-4 pb-10">
@@ -242,13 +276,10 @@ export default function addRecipe({ user }) {
             {
               _.map(galery, (e, idx) => (
                 !e.path ? <GaleryItemUpload idx={idx} handleGalery={addToGalery} />
-                  : <GaleryItemPreview src={e.path} />
+                  : <GaleryItemPreview idx={idx} src={e.path} removeGaleryItem={removeGaleryItem} />
               ))
             }
           </div>
-          <button type="button" className="self-center rounded-lg px-2" onClick={() => setGalery([...galery, { path: null, formData: null }])}>
-            <p className="font-light text-xs text-gray-500">+ Ajouter plus d'images</p>
-          </button>
         </div>
         <div className="">
           <div className="mb-3">
@@ -260,6 +291,29 @@ export default function addRecipe({ user }) {
               required
               maxLength={30}
             />
+          </div>
+          <div className="mb-3 flex">
+            <span className="py-1 px-2">
+              <TimeIcon
+                width="20"
+                height="20"
+                fill="#e2e8f0"
+              />
+            </span>
+            <div className="py-1 px-2 border border-current rounded-lg w-auto">
+              <input
+                className="text-gray-600 font-light text-md"
+                type="number"
+                name="time"
+                onChange={onChangeText}
+                value={1}
+                required
+              />
+              <select name="time" className="text-gray-600 font-light text-md">
+                <option value="minutes">min</option>
+                <option value="hours">h</option>
+              </select>
+            </div>
           </div>
           <div className="mb-3">
             <p className="text-gray-700 text-lg mb-1">Description</p>
